@@ -1,0 +1,23 @@
+<div class="card user-form">
+    <ngb-alert *ngIf="alert" [type]="alert.type" (closed)="close(alert)">{{ alert.message }}</ngb-alert>
+    <form [formGroup]="userForm" (ngSubmit)="handleSubmit()">
+        <legend>Crear usuario</legend>
+        <div class="mb-3">
+            <label for="name" class="form-label">Nombre</label>
+            <input id="name" formControlName="name" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="age" class="form-label">Edad</label>
+            <input id="age" formControlName="age" type="number" class="form-control" required="required">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input id="email" formControlName="email" type="email" class="form-control" required="required">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Contrase&ntilde;a</label>
+            <input id="password" formControlName="password" type="password" class="form-control" required="required">
+        </div>
+        <button type="submit" class="btn btn-primary">Crear</button>
+    </form>
+</div>
