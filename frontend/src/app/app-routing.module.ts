@@ -5,9 +5,10 @@ import { LoginComponent } from './login/login.component';
 import { ListComponent } from './list/list.component';
 
 export const routes: Routes = [
-  { title: 'Crear usuario', component: SignupComponent, path: "signup" },
-  { title: 'Acceder', component: LoginComponent, path: "login" },
-  { title: 'Listado usuario', component: ListComponent, path: "users" },
+  { path: '', pathMatch: 'full', redirectTo: '/login' },
+  { title: 'Crear usuario', component: SignupComponent, path: 'signup' },
+  { title: 'Acceder', component: LoginComponent, path: 'login' },
+  { title: 'Listado usuario', component: ListComponent, path: 'users' }, // TODO authenticated guard
 ];
 
 @NgModule({

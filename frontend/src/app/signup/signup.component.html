@@ -1,5 +1,5 @@
 <div class="card user-form">
-    <ngb-alert *ngIf="alert" [type]="alert.type" (closed)="close(alert)">{{ alert.message }}</ngb-alert>
+    <ngb-alert *ngIf="alert" [type]="alert.type" (closed)="closeAlert()">{{ alert.message }}</ngb-alert>
     <form [formGroup]="userForm" (ngSubmit)="handleSubmit()">
         <legend>Crear usuario</legend>
         <div class="mb-3">

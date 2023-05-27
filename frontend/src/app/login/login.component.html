@@ -1,1 +1,27 @@
-<p>login works!</p>
+<div class="card login-form">
+    <ngb-alert *ngIf="!!alert" type="danger" (closed)="close()">{{ alert }}</ngb-alert>
+    <form [formGroup]="loginForm" (ngSubmit)="handleSubmit()">
+        <legend>Login</legend>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input id="email" formControlName="email" type="email" class="form-control"
+                [class.is-valid]="emailControl.valid" [class.is-invalid]="emailControl.dirty && emailControl.invalid">
+            <div class="invalid-feedback" *ngIf="emailControl.invalid && emailControl.hasError('required')">
+                Introduzca su email
+            </div>
+            <div class="invalid-feedback" *ngIf="emailControl.invalid && emailControl.hasError('email')">
+                Debe introducir un email v&aacute;lido
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Contrase&ntilde;a</label>
+            <input id="password" formControlName="password" type="password" class="form-control"
+                [class.is-valid]="passwordControl.valid"
+                [class.is-invalid]="passwordControl.dirty && passwordControl.invalid">
+            <div class="invalid-feedback" *ngIf="passwordControl.invalid && passwordControl.hasError('required')">
+                Introduzca su contrase&ntilde;a
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Acceder</button>
+    </form>
+</div>

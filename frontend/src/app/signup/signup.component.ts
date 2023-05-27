@@ -4,6 +4,7 @@ import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
 
 type Alert = { type: 'success' | 'danger', message: string };
 
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -44,7 +45,7 @@ export class SignupComponent {
     }
   }
 
-  close(alert: Alert) {
+  closeAlert() {
     delete this.alert;
   }
 }
