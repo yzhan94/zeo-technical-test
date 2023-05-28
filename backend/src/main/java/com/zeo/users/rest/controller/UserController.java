@@ -9,12 +9,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class UserController {
 
@@ -32,8 +31,10 @@ public class UserController {
     }
 
     @PostMapping("users")
-    public ResponseEntity<?> createUser(final UserWithPassword user) {
+    public ResponseEntity<?> createUser(final @RequestBody UserWithPassword user) {
+        LOGGER.atInfo().log("Lorem {}", user.getEmail());
         if (!isValid(user)) {
+            LOGGER.atInfo().log("invalid user data {}", user.getEmail());
             return ResponseEntity.badRequest().build();
         }
 

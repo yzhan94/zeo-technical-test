@@ -50,7 +50,7 @@ public class InMemoryUserServiceImpl implements UserService {
     @Override
     public Optional<User> findUser(final String email, final String password) {
         final InMemoryUser user = usersMap.get(email);
-        if (passwordService.matches(password, user.getPasswordHash())) {
+        if (user != null && passwordService.matches(password, user.getPasswordHash())) {
             return Optional.of(convertToUser(email, user));
         }
         return Optional.empty();

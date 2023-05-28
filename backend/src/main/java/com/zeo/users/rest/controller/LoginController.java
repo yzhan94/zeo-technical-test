@@ -5,10 +5,12 @@ import com.zeo.users.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin
 @RestController
 public class LoginController {
 
@@ -19,7 +21,7 @@ public class LoginController {
     }
 
     @PostMapping("login")
-    public ResponseEntity<?> login(final Credentials credentials) {
+    public ResponseEntity<?> login(final @RequestBody Credentials credentials) {
         if (!isValid(credentials)) {
             return ResponseEntity.badRequest().build();
         }

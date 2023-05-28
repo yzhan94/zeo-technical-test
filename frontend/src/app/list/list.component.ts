@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { User } from '../user.model';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-list',
@@ -7,6 +8,12 @@ import { User } from '../user.model';
   styleUrls: ['./list.component.css'],
 })
 export class ListComponent {
-  users: User[] = [{name: 'foo', age: 20, email: 'foo@bar.net'}];
-  // TODO fetch users from backend
+  users: User[] = [];
+
+  constructor(private userService: UserService) {
+    userService.listUsers()
+      .subscribe(users => {
+        this.users = users as User[];
+      });
+  }
 }

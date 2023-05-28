@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { LoginService } from '../login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,23 +17,27 @@ export class LoginComponent {
 
   alert?: string;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private router: Router, private loginService: LoginService) { }
 
   get emailControl() { return this.loginForm.get('email')!!; }
   get passwordControl() { return this.loginForm.get('password')!!; }
 
   handleSubmit() {
     if (this.loginForm.valid) {
-      // TODO llamar al backend
-      const response = 200;
-      if (response === 200) {
-        // TODO redireccionar
-      } else if (response === 400) {
-        // TODO analizar respuesta
-        this.alert = 'No existe el usuario';
-      } else {
-        this.alert = 'Ha ocurrido un error inesperado';
-      }
+      const { email, password } = this.loginForm.value;
+      this.loginService.login(email!!, password!!)
+        .subscribe({
+          next: () => {
+            this.router.navigateByUrl('/users');
+          },
+          error: res => {
+            if (res.status === 400) {
+              this.alert = 'No existe el usuario con la contraseña';
+            } else {
+              this.alert = 'Ha ocurrido un error inesperado';
+            }
+          }
+        });
     } else {
       // Los errores en el frontend los mostramos en plantilla
       this.emailControl.markAsDirty();

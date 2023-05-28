@@ -9,6 +9,9 @@ import { ListComponent } from './list/list.component';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { UserService } from './user.service';
+import { LoginService } from './login.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,12 +22,16 @@ import { CommonModule } from '@angular/common';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     CommonModule,
     AppRoutingModule,
     ReactiveFormsModule,
     NgbModule
   ],
-  providers: [],
+  providers: [
+    UserService,
+    LoginService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
