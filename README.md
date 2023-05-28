@@ -1,4 +1,4 @@
-# ZEO TECHNOLOGY - prueba de propgramación
+# ZEO TECHNOLOGY - prueba de programación
 
 Esta es la implementación para una prueba de programación para el proceso de
 selección de ZEO TECHNOLOGY.
