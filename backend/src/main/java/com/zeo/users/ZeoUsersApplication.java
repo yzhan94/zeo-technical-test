@@ -7,6 +7,9 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 @SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 public class ZeoUsersApplication {
 
+    public static final String PERSISTENCE_VOLATILE = "VOLATILE";
+    public static final String PERSISTENCE_PERSISTENT = "PERSISTENT";
+
     public static void main(String[] args) {
         SpringApplication.run(ZeoUsersApplication.class, args);
     }

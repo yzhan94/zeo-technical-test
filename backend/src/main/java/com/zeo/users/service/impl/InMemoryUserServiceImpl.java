@@ -1,11 +1,13 @@
 package com.zeo.users.service.impl;
 
+import com.zeo.users.ZeoUsersApplication;
 import com.zeo.users.exception.UserExistsException;
 import com.zeo.users.rest.model.User;
 import com.zeo.users.rest.model.UserWithPassword;
 import com.zeo.users.service.PasswordService;
 import com.zeo.users.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -19,6 +21,7 @@ import java.util.stream.Collectors;
  * Servicio de usuarios volatiles
  */
 @Component
+@ConditionalOnProperty(value = "persistence.mode", havingValue = ZeoUsersApplication.PERSISTENCE_VOLATILE, matchIfMissing = true)
 public class InMemoryUserServiceImpl implements UserService {
 
     private final ConcurrentMap<String, InMemoryUser> usersMap = new ConcurrentHashMap<>();
@@ -56,7 +59,7 @@ public class InMemoryUserServiceImpl implements UserService {
         return Optional.empty();
     }
 
-    private User convertToUser(final String email, InMemoryUser inMemoryUser) {
+    private User convertToUser(final String email, final InMemoryUser inMemoryUser) {
         final User user = new User();
         user.setName(inMemoryUser.getName());
         user.setAge(inMemoryUser.getAge());
